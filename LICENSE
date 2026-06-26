@@ -1,5 +1,5 @@
-function metrics = run_lateral_shift()
-%RUN_LATERAL_SHIFT Run the lateral-shift verification case.
+function metrics = run_hover()
+%RUN_HOVER Run the hover verification case.
 
 projectRoot = fileparts(fileparts(mfilename('fullpath')));
 modelName = 'uav_6dof_course';
@@ -10,9 +10,9 @@ end
 
 load_system(modelPath);
 set_param(modelName, 'StopTime', '20');
-set_param([modelName '/ScenarioMode'], 'Value', '4');
+set_param([modelName '/ScenarioMode'], 'Value', '1');
 simOut = sim(modelName, 'ReturnWorkspaceOutputs', 'on');
 close_system(modelName, 0);
 
-metrics = plot_sim_results(simOut, 'lateral_shift', fullfile(projectRoot, 'results', 'lateral_shift'));
+metrics = plot_sim_results(simOut, 'hover', fullfile(projectRoot, 'results', 'hover'));
 end
